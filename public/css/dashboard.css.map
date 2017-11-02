@@ -1,0 +1,1 @@
+{"version":3,"sources":["dashboard/custom.scss","dashboard/user-table.scss"],"names":[],"mappings":"AAAA;EACE,2BAAwB,EACzB;;ACIM;EACC,uBAAuB,EACxB","file":"dashboard.css","sourcesContent":[".w-logo {\n  margin-top:7px!important;\n}",".w-table {\n\n  > tbody {\n\n    >tr {\n\n      >td {\n        vertical-align: middle;\n      }\n    }\n  }\n}"]}

@@ -1,0 +1,28 @@
+#!/bin/sh
+
+trap 'echo "Exit 0 signal detected..."' 0
+
+if ! git diff --quiet; then
+   echo "found local changes"
+    _chages="1"
+fi
+
+if ! [ -n _changes ]; then
+  echo "local changes stashed"
+  git stash
+fi
+
+if git pull origin master; then
+  echo "success pulling from git origin/master"
+  if php artisan migrate; then
+    echo "successfully ran migrations"
+  fi
+else
+  echo "failed to pull from git origin/master"
+  git stash apply && git stash drop
+fi
+
+if ! [ -n _chages ]; then
+  echo "local changes un-stashed"
+  git stash pop
+fi

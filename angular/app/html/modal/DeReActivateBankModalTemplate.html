@@ -1,0 +1,12 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{(var.bank.status === 1) ? 'Deactivate' : 'Reactivate'}} Bank</h4>
+</div>
+<div class="modal-body">
+    <div>
+        Do you want to deactivate the Bank Account: <span ng-bind-html="var.bank.name"></span>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" ng-click="proceedDeReactivateBank()">Yes</button>
+    <button class="btn btn-danger" ng-click="cancel()">No</button>
+</div>

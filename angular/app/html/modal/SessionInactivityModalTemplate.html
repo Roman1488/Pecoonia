@@ -1,0 +1,12 @@
+<div class="modal-header">
+    <h4 class="modal-title">Your Session is expiring. Do you wish to stay logged in?</h4>
+</div>
+<div class="modal-body">
+    <div idle-countdown="countdown" ng-init="countdown=5">
+    Without activity your session will expire in {{countdown}}
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-md" ng-click="cancel()">Log out now</button>
+    <button class="btn btn-primary" ng-click="proceedStayLoggedIn()">Stay on logged in to Pecoonia</button>
+</div>

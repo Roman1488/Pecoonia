@@ -1,0 +1,12 @@
+<div class="modal-header">
+    <h4 class="modal-title">Delete Bank</h4>
+</div>
+<div class="modal-body">
+    <div>
+        Are you sure you want to delete the Bank Account: <span ng-bind-html="var.bank.name"></span>. You will not be able to view the bank account balance again.
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" ng-click="proceedDeleteBank()">Yes</button>
+    <button class="btn btn-danger" ng-click="cancel()">No</button>
+</div>

@@ -1,0 +1,56 @@
+stages:
+    - test
+    - build
+    - deploy
+
+test:
+    stage: test
+    script:
+        - echo "Running tests"
+    only:
+        - staging
+
+build_staging:
+    stage: build
+    script:
+        - echo "Building the project for Staging"
+        - $APP_SH_PATH"/build_staging.sh"
+    tags:
+        - build_staging
+    only:
+        - staging
+
+# build_live:
+#     stage: build
+#     script:
+#         - echo "Building the project for Live"
+#     tags:
+#         - build_live
+#     only:
+#         - master
+#     when: manual
+
+deploy_staging:
+    stage: deploy
+    script:
+        - echo "Deploying to Staging server"
+        - $APP_SH_PATH"/deploy_staging.sh"
+    tags:
+        - deploy_staging
+    only:
+        - staging
+    environment:
+        name: staging
+    when: manual
+
+# deploy_live:
+#     stage: deploy
+#     script:
+#         - echo "Deploying to Live server"
+#     tags:
+#         - deploy_live
+#     only:
+#         - master
+#     environment:
+#         name: production
+#     when: manual

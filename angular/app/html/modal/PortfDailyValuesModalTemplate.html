@@ -1,0 +1,71 @@
+<div class="modal-header">
+    <h4 class="modal-title">Portfolio Daily Values: {{currentPortfolio.name}}</h4>
+</div>
+<div class="modal-body">
+    <div class="col_full">
+        <div class="table-responsive">
+            <table class="t-table table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Total Market Value Base</th>
+                        <th>Total All Bank Balance</th>
+                        <th>Portfolio Value</th>
+                        <th>Cash Share</th>
+                        <th>Equity Share</th>
+                        <th>Fund Share</th>
+                        <th>Securities Up</th>
+                        <th>Securities Down</th>
+                        <th>Securities Unchanged</th>
+                        <th>Portfolio Change</th>
+                        <th>Portfolio Percent Change</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="p in modalData">
+                    <tr ng-click="displayCurrencyDistribution($index)" class="cursor-pointer">
+                        <td>{{formatTrDate(p.created_at)}}</td>
+                        <td>{{formatValue(p.total_marketvalue_base)}}</td>
+                        <td>{{formatValue(p.total_all_bank_balance)}}</td>
+                        <td>{{formatValue(p.portfolio_value)}}</td>
+                        <td>{{formatValue(p.cash_share)}} %</td>
+                        <td>{{formatValue(p.equity_share)}} %</td>
+                        <td>{{formatValue(p.fund_share)}} %</td>
+                        <td>{{p.securities_up}}</td>
+                        <td>{{p.securities_down}}</td>
+                        <td>{{p.securities_unchanged}}</td>
+                        <td>{{formatValue(p.marketvalue_change)}}</td>
+                        <td>{{formatValue(p.marketvalue_percent_change)}} %</td>
+                    </tr>
+                    <tr ng-show="showCurrencyDistribution[$index]">
+                        <td colspan="13" class="t-table-sub">
+                            <table class="table table-hover table-bordered table-condensed table-striped port-trans-table">
+                                <thead>
+                                    <tr>
+                                        <th>Currency Symbol</th>
+                                        <th>Market Value Base</th>
+                                        <th>Bank Balance Base</th>
+                                        <th>Percentage Share</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="currencyDist in p.daily_currency_distributions | orderBy:'date'">
+                                        <td ng-bind-html="currencyDist.currency_symbol">currency_symbol</td>
+                                        <td ng-bind-html="formatValue(currencyDist.market_value_base)">market_value_base</td>
+                                        <td ng-bind-html="formatValue(currencyDist.bank_balance_base)">bank_balance_base</td>
+                                        <td ng-bind-html="formatValue(currencyDist.percentage_share) + ' %' ">percentage_share</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+                <tr ng-if="!modalData">
+                    <td colspan="13">No Data Found.</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-danger" type="button" ng-click="cancel()">Close</button>
+</div>

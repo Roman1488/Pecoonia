@@ -1,0 +1,12 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{(var.portfolio.status === 1) ? 'Deactivate' : 'Reactivate'}} Portfolio</h4>
+</div>
+<div class="modal-body">
+    <div>
+        Do you want to {{(var.portfolio.status === 1) ? 'deactivate' : 'reactivate'}} the Portfolio: <span ng-bind-html="var.portfolio.name"></span>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" ng-click="proceedDeReactivatePortfolio()">Yes</button>
+    <button class="btn btn-danger" ng-click="cancel()">No</button>
+</div>

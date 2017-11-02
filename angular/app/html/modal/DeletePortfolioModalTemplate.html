@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <h4 class="modal-title">Delete Portfolio</h4>
+</div>
+<div class="modal-body">
+    <div ng-hide="showPasswdForm">
+        <div>
+            Are you sure you want to delete the Portfolio: <span ng-bind-html="var.portfolio.name"></span>.<br/>All data in the portfolio will be lost and cannot be recovered.
+        </div>
+    </div>
+    <form class="del-port-pwd-form" ng-show="showPasswdForm" name="passwdForm">
+        <div ng-show="user.signup_source">
+            Are you really sure you want to delete your account <span ng-bind-html="$root.user.name"></span>?
+        </div>
+        <div ng-show="!user.signup_source">
+            <p ng-show="check_passwd_err" class="help-block">Invalid password. Try again.</p>
+            <div class="col_full" ng-class="{ 'has-error' : passwdForm.checkPassword.$invalid && !passwdForm.checkPassword.$pristine }">
+                <label>Enter Password:</label>
+                <input type="password" ng-model="var.checkPassword" name="checkPassword" class="form-control" required />
+                <p ng-show="passwdForm.checkPassword.$error.required && !passwdForm.checkPassword.$pristine" class="help-block">The password field is required.</p>
+            </div>
+        </div>
+    </form>
+</div>
+<div ng-show="showPasswdForm" class="modal-footer">
+    <div ng-if="!user.signup_source">
+        <button class="btn btn-success" ng-click="submitPasswdForm()">Submit</button>
+        <button class="btn btn-danger" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+    <div ng-if="user.signup_source">
+        <button class="btn btn-danger" type="button" ng-click="cancel()">No</button>
+        <button class="btn btn-success" ng-click="submitPasswdForm()">Yes</button>
+    </div>
+</div>
+
+<div ng-show="!showPasswdForm" class="modal-footer">
+    <button class="btn btn-success" ng-click="showPasswdForm=true">Yes</button>
+    <button class="btn btn-danger" ng-click="cancel()">No</button>
+</div>

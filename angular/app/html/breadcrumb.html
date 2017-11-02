@@ -1,0 +1,12 @@
+<html>
+<body>
+<ol class="sitepath" ng-show="steps.length > 0">
+    <li ng-repeat="step in steps | limitTo:(steps.length-1)">
+        <a href="{{step.ncyBreadcrumbLink}}" ng-bind-html="step.ncyBreadcrumbLabel"></a>
+    </li>
+    <li ng-repeat="step in steps | limitTo:-1" class="active">
+        <span ui-sref="panel.create" ng-bind-html="step.ncyBreadcrumbLabel"></span>
+    </li>
+</ol>
+</body>
+</html>
